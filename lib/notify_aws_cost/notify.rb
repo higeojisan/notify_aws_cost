@@ -8,14 +8,13 @@ module NotifyAwsCost
     attr_reader :webhook_url, :parsed_url
     attr_accessor :name, :icon_url, :icon_emoji
 
-    # 初期化時にnameとかいじれるようにしたい
     # 環境変数(SLACK_WEBHOOK_URL)が設定されていない場合は処理を終了したい
-    def initialize
-      @webhook_url = ENV['SLACK_WEBHOOK_URL']
-      @parsed_url = URI.parse(@webhook_url)
-      @name = nil
-      @icon_url = nil
-      @icon_emoji = nil
+    def initialize(args)
+      @webhook_url  = ENV['SLACK_WEBHOOK_URL']
+      @parsed_url   = URI.parse(@webhook_url)
+      @name         = args.fetch(:name, nil)
+      @icon_url     = args.fetch(:icon_url, nil)
+      @icon_emoji   = args.fetch(:icon_emoji, nil)
     end
 
     def send(message)

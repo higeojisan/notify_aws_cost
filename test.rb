@@ -1,10 +1,17 @@
 require 'notify_aws_cost'
 
+=begin
 #export SLACK_WEBHOOK_URL='......'
 notify =  NotifyAwsCost::Notify.new
 notify.name = "higehige"
 notify.icon_emoji = ":ruby:"
 notify.send("test")
+=end
+
+=begin
+notify = NotifyAwsCost::Notify.new({name: "hyde", icon_emoji: ":heart:"})
+notify.send("test")
+=end
 
 =begin
 module ApiHelper
