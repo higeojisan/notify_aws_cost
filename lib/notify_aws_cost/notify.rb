@@ -20,12 +20,7 @@ module NotifyAwsCost
 
     def send(message)
       payload = set_payload(message)
-      http = Net::HTTP.new(parsed_url.host, parsed_url.port)
-      http.start do
-        request = Net::HTTP::Post.new(parsed_url.path)
-        request.set_form_data(payload: payload.to_json)
-        http.request(request)
-      end
+      post_payload(payload)
     end
 
     private
@@ -37,6 +32,22 @@ module NotifyAwsCost
       payload[:icon_url] = icon_url unless icon_url.nil?
       payload[:icon_emoji] = icon_emoji unless icon_emoji.nil?
       payload
+    end
+
+    def post_payload(payload)
+      begin
+        response = Net::HTTP.start(parsed_url.host, parsed_url.port) do |http|
+          http.open_timeout = 5
+          http.read_timeout = 10
+          request = Net::HTTP::Post.new(parsed_url.path)
+          request.set_form_data(payload: payload.to_json)
+          http.request(request)
+        end
+
+        raise  "Failed to connect to #{@webhook_url}" unless response.is_a?(Net::HTTPSuccess)
+      rescue => e
+        puts "#{e.message}"
+      end
     end
 
   end
