@@ -8,10 +8,8 @@ notify.icon_emoji = ":ruby:"
 notify.send("test")
 =end
 
-=begin
 notify = NotifyAwsCost::Notify.new({name: "hyde", icon_emoji: ":heart:"})
 notify.send("test")
-=end
 
 =begin
 module ApiHelper
