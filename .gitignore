@@ -7,6 +7,7 @@
 /spec/reports/
 /tmp/
 .envrc
+vendor
 
 # rspec failure tracking
 .rspec_status

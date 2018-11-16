@@ -8,8 +8,25 @@ notify.icon_emoji = ":ruby:"
 notify.send("test")
 =end
 
+=begin
 notify = NotifyAwsCost::Notify.new({name: "hyde", icon_emoji: ":heart:"})
 notify.send("test")
+=end
+
+=begin
+#export SLACK_WEBHOOK_URL='......'
+#export AWS_ACCESS_KEY_ID='.......'
+#export AWS_SECRET_ACCESS_KEY='.....'
+#export AWS_REGION='us-east-1'
+notify =  NotifyAwsCost::Notify.new
+notify.name = "higehige"
+notify.icon_emoji = ":ruby:"
+cost = NotifyAwsCost::AwsCost.new
+notify.send(cost)
+=end
+cost = NotifyAwsCost::AwsCost.new
+cost.get_each_service_charege
+
 
 =begin
 module ApiHelper
