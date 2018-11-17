@@ -5,9 +5,12 @@ module NotifyAwsCost
     NAME_SPACE = "AWS/Billing"
     METRIC_NAME = "EstimatedCharges"
     ESTIMATE_PERIOD = 86400
+    STRFTIME_PARAM = "%Y-%m-%dT%H%M%SZ"
 
     def initialize
       @client = Aws::CloudWatch::Client.new
+      @end_time = Time.utc((Time.now - 86400).year, (Time.now - 86400).month, (Time.now - 86400).day, 15, 0, 0, 0).strftime(STRFTIME_PARAM)
+      @start_time = Time.utc((Time.now - 86400 * 2).year, (Time.now - 86400 * 2).month, (Time.now - 86400 * 2).day, 15, 0, 0, 0).strftime(STRFTIME_PARAM)
     end
 
     def get_each_service_charege
@@ -23,8 +26,8 @@ module NotifyAwsCost
         end
         resp = cw_metric.get_statistics({
           dimensions: dimensions,
-          start_time: "2018-11-15T00:09:00Z",
-          end_time: "2018-11-16T00:09:00Z",
+          start_time: @start_time,
+          end_time: @end_time,
           period: ESTIMATE_PERIOD,
           statistics: ["Maximum"],
         })
@@ -42,8 +45,8 @@ module NotifyAwsCost
           value: "USD",
           },
         ],
-        start_time: "2018-11-15T00:09:00Z",
-        end_time: "2018-11-16T00:09:00Z",
+        start_time: @start_time,
+        end_time: @end_time,
         period: ESTIMATE_PERIOD,
         statistics: ["Maximum"],
       })

@@ -25,13 +25,19 @@ module NotifyAwsCost
 
     private
 
+    def make_pretext
+      year = (Time.now - 86400).year
+      month = (Time.now - 86400).month
+      previous_day = (Time.now - 86400).day
+      pretext = "#{year}/#{month}/01〜#{previous_day}日のAWS利用料金"
+    end
+
     def set_payload(message)
       payload = {}
-      #payload[:text] = message
       payload[:username] = name unless name.nil?
       payload[:icon_url] = icon_url unless icon_url.nil?
       payload[:icon_emoji] = icon_emoji unless icon_emoji.nil?
-      payload[:attachments] = [{color: "good", text: message}]
+      payload[:attachments] = [{color: "good", text: message, pretext: make_pretext}]
       payload
     end
 

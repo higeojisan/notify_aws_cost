@@ -24,7 +24,7 @@ notify.icon_emoji = ":ruby:"
 cost = NotifyAwsCost::AwsCost.new
 notify.send(cost)
 =end
-notify = NotifyAwsCost::Notify.new
+notify = NotifyAwsCost::Notify.new({icon_emoji: ":aws:", name: "AWS Cost Notify"})
 cost = NotifyAwsCost::AwsCost.new
 each_service_hash = cost.get_each_service_charege
 parser = NotifyAwsCost::Parse.new
