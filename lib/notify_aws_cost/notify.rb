@@ -27,10 +27,11 @@ module NotifyAwsCost
 
     def set_payload(message)
       payload = {}
-      payload[:text] = message
+      #payload[:text] = message
       payload[:username] = name unless name.nil?
       payload[:icon_url] = icon_url unless icon_url.nil?
       payload[:icon_emoji] = icon_emoji unless icon_emoji.nil?
+      payload[:attachments] = [{color: "good", text: message}]
       payload
     end
 
