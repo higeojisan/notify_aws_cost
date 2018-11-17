@@ -9,7 +9,7 @@ module NotifyAwsCost
     attr_accessor :name, :icon_url, :icon_emoji
 
     # 環境変数(SLACK_WEBHOOK_URL)が設定されていない場合は処理を終了したい
-    def initialize(args)
+    def initialize(args = {})
       raise "Set ENV['SLACK_WEBHOOK_URL']" if ENV['SLACK_WEBHOOK_URL'].nil? || ENV['SLACK_WEBHOOK_URL'].empty?
       @webhook_url  = ENV['SLACK_WEBHOOK_URL']
       @parsed_url   = URI.parse(@webhook_url)
