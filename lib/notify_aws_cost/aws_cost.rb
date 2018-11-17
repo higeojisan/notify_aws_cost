@@ -13,12 +13,12 @@ module NotifyAwsCost
     def get_each_service_charege
       cw_metric = Aws::CloudWatch::Metric.new(NAME_SPACE, METRIC_NAME, {client: @client})
       lists = get_service_list
-      result = ""
+      results = {}
       lists.metrics.each do |metric|
-        tmp = ""
         dimensions = []
+        service_name = nil
         metric.dimensions.each do |dimension|
-          tmp += "#{dimension.value}:" if dimension.name == "ServiceName"
+          service_name = dimension.value if dimension.name == "ServiceName"
           dimensions << {name: dimension.name, value: dimension.value}
         end
         resp = cw_metric.get_statistics({
@@ -28,12 +28,9 @@ module NotifyAwsCost
           period: ESTIMATE_PERIOD,
           statistics: ["Maximum"],
         })
-        unless resp.datapoints.empty?
-          tmp += "#{resp.datapoints[0].maximum}\n"
-          result += tmp
-        end
+        results[service_name.to_sym] = resp unless service_name.nil?
       end
-      result
+      results
     end
 
     def get_total_charge

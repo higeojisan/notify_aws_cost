@@ -26,9 +26,12 @@ notify.send(cost)
 =end
 notify = NotifyAwsCost::Notify.new
 cost = NotifyAwsCost::AwsCost.new
-each_service_charge = cost.get_each_service_charege
+each_service_hash = cost.get_each_service_charege
+parser = NotifyAwsCost::Parse.new
+result = parser.each_service(each_service_hash)
+#parser.each_service(each_service_array)
 #total_charge = cost.get_total_charge
-notify.send(each_service_charge)
+notify.send(result)
 #cost.get_service_list
 #puts "========================================"
 #cost.get_total_charge
