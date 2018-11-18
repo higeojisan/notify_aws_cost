@@ -32,3 +32,13 @@ notify.send
 ```
 
 ![](https://github.com/higeojisan/notify_aws_cost/tree/master/sample_images/sample_1.png)
+
+### Sample(2)
+cutomize name and icon
+```ruby
+require 'notify_aws_cost'
+
+notify = NotifyAwsCost::Notify.new({name: "higeojisan", icon_emoji: ":smile:"})
+notify.send
+```
+![](https://github.com/higeojisan/notify_aws_cost/tree/master/sample_images/sample_2.png)
