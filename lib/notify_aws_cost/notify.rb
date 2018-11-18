@@ -19,9 +19,12 @@ module NotifyAwsCost
       @name         = args.fetch(:name, nil)
       @icon_url     = args.fetch(:icon_url, nil)
       @icon_emoji   = args.fetch(:icon_emoji, nil)
+      @cloudwatch   = AwsCost.new
     end
 
-    def send(message)
+    def send
+      each_service_hash = @cloudwatch.get_each_service_charege
+      message = each_service(each_service_hash)
       payload = set_payload(message)
       post_payload(payload)
     end

@@ -25,17 +25,7 @@ cost = NotifyAwsCost::AwsCost.new
 notify.send(cost)
 =end
 notify = NotifyAwsCost::Notify.new({icon_emoji: ":aws:", name: "AWS Cost Notify"})
-cost = NotifyAwsCost::AwsCost.new
-each_service_hash = cost.get_each_service_charege
-result = NotifyAwsCost::Parse.each_service(each_service_hash)
-#parser.each_service(each_service_array)
-#total_charge = cost.get_total_charge
-notify.send(result)
-#cost.get_service_list
-#puts "========================================"
-#cost.get_total_charge
-#puts "========================================"
-#cost.get_each_service_charege
+notify.send
 
 =begin
 notify = NotifyAwsCost::Notify.new(opts)
