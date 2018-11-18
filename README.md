@@ -31,7 +31,7 @@ notify = NotifyAwsCost::Notify.new
 notify.send
 ```
 
-![](https://github.com/higeojisan/notify_aws_cost/tree/master/sample_images/sample_1.png)
+![Sample(1)](https://github.com/higeojisan/notify_aws_cost/blob/master/sample_images/sample_1.png)
 
 ### Sample(2)
 cutomize name and icon
@@ -41,4 +41,4 @@ require 'notify_aws_cost'
 notify = NotifyAwsCost::Notify.new({name: "higeojisan", icon_emoji: ":smile:"})
 notify.send
 ```
-![](https://github.com/higeojisan/notify_aws_cost/tree/master/sample_images/sample_2.png)
+![Sample(2)](https://github.com/higeojisan/notify_aws_cost/blob/master/sample_images/sample_2.png)
