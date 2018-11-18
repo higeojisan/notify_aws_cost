@@ -30,3 +30,5 @@ require 'notify_aws_cost'
 notify = NotifyAwsCost::Notify.new
 notify.send
 ```
+
+![](https://github.com/higeojisan/notify_aws_cost/tree/master/sample_images/sample_1.png)
