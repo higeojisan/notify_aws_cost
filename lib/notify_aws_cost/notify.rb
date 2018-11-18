@@ -1,9 +1,12 @@
 require 'uri'
 require 'net/http'
 require 'json'
+require 'notify_aws_cost/parse'
 
 module NotifyAwsCost
   class Notify
+
+    include Parse
 
     attr_reader :webhook_url, :parsed_url
     attr_accessor :name, :icon_url, :icon_emoji

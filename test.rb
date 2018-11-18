@@ -27,8 +27,7 @@ notify.send(cost)
 notify = NotifyAwsCost::Notify.new({icon_emoji: ":aws:", name: "AWS Cost Notify"})
 cost = NotifyAwsCost::AwsCost.new
 each_service_hash = cost.get_each_service_charege
-parser = NotifyAwsCost::Parse.new
-result = parser.each_service(each_service_hash)
+result = NotifyAwsCost::Parse.each_service(each_service_hash)
 #parser.each_service(each_service_array)
 #total_charge = cost.get_total_charge
 notify.send(result)
@@ -38,7 +37,10 @@ notify.send(result)
 #puts "========================================"
 #cost.get_each_service_charege
 
-
+=begin
+notify = NotifyAwsCost::Notify.new(opts)
+notify.send
+=end
 
 =begin
 module ApiHelper

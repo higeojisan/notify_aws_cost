@@ -1,8 +1,5 @@
 module NotifyAwsCost
-  class Parse
-
-    def initialize
-    end
+  module Parse
 
     def each_service(each_service_hash)
       result = ""
@@ -19,6 +16,8 @@ module NotifyAwsCost
       result += "Total: $#{sum}"
       result
     end
+
+    module_function :each_service
 
   end
 end
