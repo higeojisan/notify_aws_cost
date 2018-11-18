@@ -36,22 +36,7 @@ module NotifyAwsCost
       results
     end
 
-    def get_total_charge
-      metric = Aws::CloudWatch::Metric.new(NAME_SPACE, METRIC_NAME, {client: @client})
-      resp = metric.get_statistics({
-        dimensions: [
-          {
-          name: "Currency",
-          value: "USD",
-          },
-        ],
-        start_time: @start_time,
-        end_time: @end_time,
-        period: ESTIMATE_PERIOD,
-        statistics: ["Maximum"],
-      })
-      resp.datapoints[0].maximum
-    end
+    private
 
     def get_service_list
       resp = @client.list_metrics({
