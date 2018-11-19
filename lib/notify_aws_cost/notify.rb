@@ -49,7 +49,10 @@ module NotifyAwsCost
 
     def post_payload(payload)
       begin
-        response = Net::HTTP.start(parsed_url.host, parsed_url.port) do |http|
+        conn = Net::HTTP.new(parsed_url.host, parsed_url.port)
+        conn.use_ssl = true
+        conn.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        response = conn.start do |http|
           http.open_timeout = 5
           http.read_timeout = 10
           request = Net::HTTP::Post.new(parsed_url.path)
