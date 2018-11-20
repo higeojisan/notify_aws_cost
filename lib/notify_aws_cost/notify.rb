@@ -19,6 +19,7 @@ module NotifyAwsCost
       @icon_url           = args.fetch(:icon_url, nil)
       @icon_emoji         = args.fetch(:icon_emoji, nil)
       @warning_threshold  = args.fetch(:warning, nil)
+      @critical_threshold = args.fetch(:critical, nil)
       @color              = "good"
       @cloudwatch         = AwsCost.new
     end
@@ -27,6 +28,7 @@ module NotifyAwsCost
       each_service_hash = @cloudwatch.get_each_service_charege
       message, sum = each_service(each_service_hash)
       warning_check(sum)
+      critical_check(sum)
       payload = set_payload(message)
       post_payload(payload)
     end
@@ -36,6 +38,11 @@ module NotifyAwsCost
     def warning_check(sum)
       return if @warning_threshold.nil?
       @color = "warning" if sum >= @warning_threshold.to_f
+    end
+
+    def critical_check(sum)
+      return if @critical_threshold.nil?
+      @color = "danger" if sum >= @critical_threshold.to_f
     end
 
     def make_pretext
