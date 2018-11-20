@@ -14,7 +14,7 @@ module NotifyAwsCost
       end
       result += "============================\n\n"
       result += "Total: $#{sum}"
-      result
+      return result, sum
     end
 
     module_function :each_service
