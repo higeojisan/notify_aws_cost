@@ -8,6 +8,7 @@
 /tmp/
 .envrc
 vendor
+.DS_Store
 
 # rspec failure tracking
 .rspec_status
