@@ -42,3 +42,21 @@ notify = NotifyAwsCost::Notify.new({name: "higeojisan", icon_emoji: ":smile:"})
 notify.send
 ```
 ![Sample(2)](https://github.com/higeojisan/notify_aws_cost/blob/master/sample_images/sample_2.png)
+
+### Sample(3)
+set warning and critical threshold or either of them
+```ruby
+require 'notify_aws_cost'
+
+notify = NotifyAwsCost::Notify.new({warning: 2, critical: 3})
+notify.send
+```
+
+* If cost is less than warning, color is green
+![Sample(3-1)](https://github.com/higeojisan/notify_aws_cost/blob/master/sample_images/sample_1.png)
+
+* If cost is more than waring and less than critical, color is yellow
+![Sample(3-2)](https://github.com/higeojisan/notify_aws_cost/blob/master/sample_images/sample_3-2.png)
+
+* If cost is more than critical, color is red
+![Sample(3-3)](https://github.com/higeojisan/notify_aws_cost/blob/master/sample_images/sample_3-3.png)
