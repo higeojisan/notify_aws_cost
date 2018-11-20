@@ -27,22 +27,33 @@ module NotifyAwsCost
     def send
       each_service_hash = @cloudwatch.get_each_service_charege
       message, sum = each_service(each_service_hash)
-      warning_check(sum)
-      critical_check(sum)
+      warning_critical_check(sum)
       payload = set_payload(message)
       post_payload(payload)
     end
 
     private
 
-    def warning_check(sum)
-      return if @warning_threshold.nil?
-      @color = "warning" if sum >= @warning_threshold.to_f
-    end
+    def warning_critical_check(sum)
+      # warningのみ設定されている場合
+      if !@warning_threshold.nil? && @critical_threshold.nil?
+        @color = "warning" if sum >= @warning_threshold.to_f
+      end
 
-    def critical_check(sum)
-      return if @critical_threshold.nil?
-      @color = "danger" if sum >= @critical_threshold.to_f
+      # criticalのみ設定されている場合
+      if !@critical_threshold.nil? && @warning_threshold.nil?
+        @color = "danger" if sum >= @critical_threshold.to_f
+      end
+
+      # warning, critical両方設定されている場合
+      if !@warning_threshold.nil? && !@critical_threshold.nil?
+        raise "warning must be less than critical" if @warning_threshold >= @critical_threshold
+        if sum >= @critical_threshold
+          @color = "danger"
+        elsif sum >= @warning_threshold
+          @color = "warning"
+        end
+      end
     end
 
     def make_pretext

@@ -6,5 +6,5 @@ require 'notify_aws_cost'
 #export AWS_REGION='us-east-1'
 #notify = NotifyAwsCost::Notify.new({name: "higeojisan", icon_emoji: ":smile:"})
 #notify.send
-notify = NotifyAwsCost::Notify.new({warning: 2.2222, critical: 2.50})
+notify = NotifyAwsCost::Notify.new({warning: 1, critical: 2})
 notify.send
