@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    notify_aws_cost (0.1.0)
+    notify_aws_cost (0.2.0)
       aws-sdk-cloudwatch
       mail
 

@@ -2,6 +2,7 @@ require 'notify_aws_cost'
 
 #export SLACK_WEBHOOK_URL='......'
 #export NOTIFY_MAIL_ADDR='......'
+#export GMAIL_ADDR='......'
 #export GMAIL_PASSWORD='.....'
 #export AWS_ACCESS_KEY_ID='.......'
 #export AWS_SECRET_ACCESS_KEY='.....'
@@ -13,6 +14,6 @@ require 'notify_aws_cost'
 #slack_notify.send
 
 ## To mail
-mail_notify = NotifyAwsCost::Mail.new
+mail_notify = NotifyAwsCost::Gmail.new
 mail_notify.send
 #mail_notify.send

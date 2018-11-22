@@ -1,5 +1,5 @@
 require "notify_aws_cost/version"
 require "notify_aws_cost/slack"
-require "notify_aws_cost/mail"
+require "notify_aws_cost/gmail"
 require "notify_aws_cost/aws_cost"
 require "notify_aws_cost/parse"
