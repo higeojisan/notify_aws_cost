@@ -4,7 +4,7 @@ require 'json'
 require 'notify_aws_cost/parse'
 
 module NotifyAwsCost
-  class Notify
+  class Slack
 
     include Parse
 
