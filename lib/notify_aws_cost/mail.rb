@@ -43,7 +43,7 @@ module NotifyAwsCost
         subject SUBJECT
         body    'テスト'
       end
-      mail.charet = 'utf-8'
+      mail.charset = 'utf-8'
       mail.deliver_method(:smtp, @mail_options)
       mail.deliver
     end
